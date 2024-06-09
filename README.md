@@ -1,1 +1,1 @@
-# NodeJS templating app
+# A NodeJS app using ejs templating
