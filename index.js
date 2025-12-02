@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 5000
 
 // database connection
 // mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('Connected!')).catch((error) => console.log(`THE ERROR:: ${error}`));
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_URI, {tls: true,
+  tlsAllowInvalidCertificates: false, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', (error) => console.log(error));
 db.once('open', () => console.log('Connected to database'));
@@ -39,6 +40,6 @@ app.use('', require('./routes/routes'));
 
 
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server started at http://localhost:${PORT}`);
 });
